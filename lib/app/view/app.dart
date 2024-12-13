@@ -1,5 +1,5 @@
+import 'package:asia_trinity/features/ticker/presentation/view/ticker_page.dart';
 import 'package:asia_trinity/l10n/l10n.dart';
-import 'package:asia_trinity/ticker/view/ticker_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

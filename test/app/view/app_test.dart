@@ -1,5 +1,5 @@
 import 'package:asia_trinity/app/app.dart';
-import 'package:asia_trinity/ticker/view/ticker_page.dart';
+import 'package:asia_trinity/features/ticker/presentation/view/ticker_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

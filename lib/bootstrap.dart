@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:asia_trinity/features/ticker/data/api_client.dart';
+import 'package:asia_trinity/injection_container.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,7 +22,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(FutureOr<Widget> Function() builder, ApiClientEnv apiClientEnv) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -28,6 +30,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
+
+  await setupDependencyInjection(apiClientEnv);
 
   runApp(await builder());
 }
