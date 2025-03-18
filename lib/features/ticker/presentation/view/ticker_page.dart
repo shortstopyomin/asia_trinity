@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:asia_trinity/features/ticker/presentation/cubit/ticker_cubit.dart';
 import 'package:asia_trinity/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -55,33 +57,33 @@ class Tickers extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        'BTC/USDT',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Colors.indigo,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        (state.tickerPrice == null ||
-                                state.tickerPrice!.price == null)
-                            ? '未取得報價'
-                            : double.parse(state.tickerPrice!.price!)
-                                .toStringAsFixed(2),
-                        style: GoogleFonts.notoSans(
-                          textStyle: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ),
                     ],
+                  ),
+                ),
+                const Text(
+                  'BTC/USDT',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: Colors.indigo,
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Text(
+                  (state.tickerPrice == null ||
+                      state.tickerPrice!.price == null)
+                      ? '未取得報價'
+                      : double.parse(state.tickerPrice!.price!)
+                      .toStringAsFixed(2),
+                  style: GoogleFonts.notoSans(
+                    textStyle: const TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 24,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -131,6 +133,38 @@ class Tickers extends StatelessWidget {
                     ),
                     child: Text(
                       'Get Price',
+                      style: GoogleFonts.notoSans(
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20,
+                        ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(36),
+                  child: TextButton(
+                    onPressed: () async {
+                      await context.read<TickerCubit>()
+                        .fetchData();
+                      print('after fetchData1');
+                      await context.read<TickerCubit>()
+                          .fetchData5();
+                      print('after fetchData 555');
+                    },
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(72, 40),
+                      backgroundColor: Colors.purple,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      'test Future',
                       style: GoogleFonts.notoSans(
                         textStyle: const TextStyle(
                           color: Colors.white,

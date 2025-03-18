@@ -26,4 +26,46 @@ class TickerCubit extends Cubit<TickerPriceState> {
       },
     );
   }
+
+  Future<void> fetchData() async {
+    print('Fetching data...');
+    try {
+      await fetchServerData3();
+      print('Data received3:');
+      await fetchServerData4();
+      print('Data received4:');
+    } catch (e) {
+      print('Failed to fetch data: $e');
+    }
+  }
+
+  Future<void> fetchData5() async {
+    print('Fetching data 555...');
+    try {
+      await fetchServerData5();
+    } catch (e) {
+      print('Failed to fetch data: $e');
+    }
+  }
+
+  Future<String> fetchServerData3() async {
+    print('fetchServerData3');
+    await Future<void>.delayed(const Duration(seconds: 3));
+    print('return Server Data 3');
+    return 'Server Data 3';
+  }
+
+  Future<String> fetchServerData4() async {
+    print('fetchServerData4');
+    await Future<void>.delayed(const Duration(seconds: 5));
+    print('return Server Data 4');
+    return 'Server Data 4';
+  }
+
+  Future<String> fetchServerData5() async {
+    print('fetchServerData555');
+    await Future<void>.delayed(const Duration(seconds: 5));
+    print('return Server Data 555');
+    return 'Server Data 555';
+  }
 }
